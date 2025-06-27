@@ -1,8 +1,59 @@
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std ;
 
 // WORK IN PROGRESS 
+
+/* 
+    Function --> vector_print 
+    -----------
+    prints the digits stored in a vector 
+    
+    Paramaters -->
+         -   num1 --> const reference to a vector of integers 
+     
+    Returns -->
+        -    Void           
+ */                             
+void vector_print (const vector <int> &num1) { 
+    for (int i=0 ; i<num1.size() ; i++) {
+        cout << num1[i] ;
+    }
+}
+
+
+
+/*
+    Function --> str_to_vector 
+    -----------
+    inputs a STRING and converts it into a vector
+    eg. 123 ---> {1,2,3}
+    
+    Parameters -->
+        -    data --> const reference to a string contains whole numbers [0,9] 
+        
+     Returns -->
+         -    result_num --> a vector containing numeric digits 
+ */   
+
+vector <int> str_to_vector (const string & data ) {
+    vector<int> result_num ;
+    // Defining a Resultant Vector 
+    
+    int str_size = data.size () ;
+    
+    for (int i =0 ; i < str_size ; i++) {    
+        int digit = data[i] - 48 ;
+        // subtracting 48 to get the value of digit 
+        // Ascii value of 0 to 9 --> 48 to 57
+    
+        result_num.push_back(digit) ;
+    }
+    
+    return result_num ;
+}
+
 
 vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
         
