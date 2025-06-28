@@ -17,7 +17,8 @@ using namespace std ;
      
     Returns -->
         -    Void           
- */                             
+ */
+                             
 void vector_print (const vector <int> &num1) { 
     for (int i=num1.size() -1 ; i>=0 ; i--) {
         cout << num1[i] ;
@@ -29,8 +30,8 @@ void vector_print (const vector <int> &num1) {
 /*
     Function --> str_to_vector 
     -----------
-    inputs a STRING and converts it into a vector
-    eg. 123 ---> {1,2,3}
+    inputs a STRING and converts it into a vector (in reverse order)
+    eg. 123 ---> {3,2,1}
     
     Parameters -->
         -    data --> const reference to a string contains whole numbers [0,9] 
@@ -45,7 +46,7 @@ vector <int> str_to_vector (const string & data ) {
     
     int str_size = data.size () ;
     
-    for (int i =0 ; i < str_size ; i++) {    
+    for (int i = str_size -1; i>=0 ; i--) {    
         int digit = data[i] - 48 ;
         // subtracting 48 to get the value of digit 
         // Ascii value of 0 to 9 --> 48 to 57
