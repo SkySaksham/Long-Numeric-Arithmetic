@@ -59,19 +59,59 @@ vector <int> str_to_vector (const string & data ) {
 
 
 
-vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
-      
-     // num1 & num2 are reverse ordered   
-     /* 
-     The Program Have Two steps (consist of two loops)
+/* 
+    Function --> vector_to_str
+    ----------
+    Converts a vector containing digit into a string in reverse order 
+    eg. {1,2,3} --> "32"
+    
+    Parameters -->
+        -    data --> Const reference to a vector
      
-     first loop --> adds the digits of both vectors and pushes it in result_vector , Runs size1 number times 
+    Returns  -->
+        -    result --> string containing digits of vector in reverse order 
+*/          
+
+string vector_to_str(const vector <int> data) {
+        string result ;
+        for (int i=data.size() -1 ; i>=0 ; i-- ){
+            result += data[i] + '0' ;
+        }
+        return result ;
+}
+
+
+/*
+    Function --> add_vectors 
+    ------------
+    Addition of two integer stored in reverse
+    order in two Vectors
+    eg . 123 --> {3,2,1}
+    
+    Parameters -->
+        -    num1 --> Const reference to a vector
+                      (contains Integer in reverse order)
+
+        -    num2 --> Const referenve to a vector
+                     (Contains Integer in reverse order)
+                     
+    Returns -->
+        -    result_num --> Vector contains the resultant integer
+        
+    How it works -->      
+    
+    The Program Have Two steps (consist of two loops .)
+     
+     First loop --> adds the digits of both vectors and pushes it in result_vector , Runs size1 number times 
      ( size1 --> size of smaller vector)
      
      second loop --> pushes the resulting digits of larger vector in result_vector , runs size2 number of times 
      (size2 --> difference in sizes of vectors )
-     */   
-                 
+
+*/
+
+vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
+                       
   vector <int> result_num ; 
   // Stores Integer In reverse Order 
   // eg. 123 --> 321 
@@ -121,6 +161,7 @@ vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
       }
 
    // loop 2 -->
+
    for (int i= size1 ; i<size2 ; i++){
        int sum = data2[i]+carry ;
        if ( sum<10 ) {
@@ -136,9 +177,130 @@ vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
        }
          
   // if carry remains 
+
   if ( carry >0 ) {
       result_num.push_back (1) ;
       }
   
   return result_num ;
   }
+
+
+/*
+    Function --> vector_product
+    ----------
+    Multiplies the integers stored in two vectors in reverse order
+    Imitates the Manual Long Multiplication Method 
+    
+    Parameters -->
+        -    num1 --> const reference to vector
+                            (represents reverse ordered integer)
+       -    num2 --> const referenve to a vector
+                           (Represents reverse ordered integer)
+     
+     Returns -->
+         -    result --> Vector contains the product of integers in reverse order
+*/         
+                          
+vector <int> vector_product(const vector <int> &num1 , const vector <int> &num2) {
+   
+    vector <int> result ;
+   
+    for (int i = 0 ; i < num2.size() ; i++) {
+        // To Multiply single element of num2
+        // with all elements of num1
+
+        
+        
+        vector <int> num ;
+        // num --> vector to contains the SINGLE digit product in reverse order
+        // eg. for 31*21 -->
+        // for 31*1 --> num contains 31 as {1,3} 
+        // for 31*2 --> num = 620 as {0,2,6}
+                
+        
+        for (int k = 0 ; k < i ; k++) {
+            num.push_back(0) ;
+        } // add significant zeros in Num
+            
+        int carry =0 ;
+        for (int j = 0 ; j<num1.size() ; j++ ) {
+            // Single digit multiplication
+            
+            int product = (num2[i]*num1[j] )+ carry ;
+        
+            if (product >= 10) {
+                carry =  (product - product%10)/10 ;
+                product = product - carry*10 ;
+            }
+            else {
+                carry = 0 ;
+            }            
+            num.push_back(product) ;
+        }
+        // If carry remains
+        if (carry>0) {
+            num.push_back (carry);
+        }
+        
+        result = add_vectors(result,num) ;
+    }
+    return result ;
+ }
+
+
+/*
+    Function --> sum
+    ----------
+    Adds two non negative integers , having no limitation of int data types
+    
+    Parameters -->
+        -    num1 --> const reference to a string ,
+                              contains non -ve integer
+        -    num2 --> const reference to a string ,
+                              contains non -ve integer 
+    
+    Returns -->>
+        -    result --> string , contains the sum
+ */                    
+
+string sum(const string & num1, const string & num2 ) {
+    vector <int> c , d ;
+    c=str_to_vector(num1) ;
+    d=str_to_vector(num2) ;
+    string result = vector_to_str(add_vectors(c,d) );
+    
+    return result ;
+}
+
+
+/*
+    Function --> multiply
+    ----------
+    Multiplies two non negative integers , having no limitation of int data types
+    
+    Parameters -->
+        -    num1 --> const reference to a string ,
+                              contains non -ve integer
+        -    num2 --> const reference to a string ,
+                              contains non -ve integer 
+    
+    Returns -->>
+        -    result --> string , contains the product
+ */
+
+string multiply(const string & num1 , const string & num2 ) {
+    vector <int> a,b ;
+    a = str_to_vector(num1);
+    b = str_to_vector(num2) ;
+    string result ;
+    result = vector_to_str(vector_product(a,b)) ;
+    return result ;
+}
+
+
+int main() {
+    cout << sum ("2","2") << endl;
+    cout << multiply("2","2") ;
+    
+   }
