@@ -8,7 +8,9 @@ using namespace std ;
 /* 
     Function --> vector_print 
     -----------
-    prints the digits stored in a vector 
+    prints the digits stored in a vector
+    in reverse order
+    eg.  {3,2,1} --> 123
     
     Paramaters -->
          -   num1 --> const reference to a vector of integers 
@@ -17,7 +19,7 @@ using namespace std ;
         -    Void           
  */                             
 void vector_print (const vector <int> &num1) { 
-    for (int i=0 ; i<num1.size() ; i++) {
+    for (int i=num1.size() -1 ; i>=0 ; i--) {
         cout << num1[i] ;
     }
 }
