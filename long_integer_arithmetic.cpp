@@ -58,9 +58,12 @@ vector <int> str_to_vector (const string & data ) {
 }
 
 
+
 vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
-        
-     /* The Program Have Two steps (consist of two loops .)
+      
+     // num1 & num2 are reverse ordered   
+     /* 
+     The Program Have Two steps (consist of two loops)
      
      first loop --> adds the digits of both vectors and pushes it in result_vector , Runs size1 number times 
      ( size1 --> size of smaller vector)
@@ -94,10 +97,10 @@ vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
     
   int size1 , size2  ;
   // Size1 --> size of smaller vector
-  // Size2 --> difference in sizes of vectors
+  // Size2 --> size of larger vector
   
   size1= data1.size() ;
-  size2= data2.size() - data1.size() ;
+  size2= data2.size() ;
   
   
   
@@ -105,8 +108,8 @@ vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
   
   // loop 1 --> 
   
-  for (int i = size1-1 ; i>=0  ; i--){
-  int sum = data1[i] + data2[i+size2] +  carry;
+  for (int i = 0 ; i<size1  ; i++){
+  int sum = data1[i] + data2[i] +  carry;
       if ( sum >9 ) {
            carry  =1 ;
            sum-=10 ;
@@ -118,7 +121,7 @@ vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
       }
 
    // loop 2 -->
-   for (int i= size2-1 ; i>=0 ; i--){
+   for (int i= size2 ; i<size2 ; i++){
        int sum = data2[i]+carry ;
        if ( sum<10 ) {
            carry=0 ;
