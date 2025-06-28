@@ -121,7 +121,7 @@ vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
       }
 
    // loop 2 -->
-   for (int i= size2 ; i<size2 ; i++){
+   for (int i= size1 ; i<size2 ; i++){
        int sum = data2[i]+carry ;
        if ( sum<10 ) {
            carry=0 ;
