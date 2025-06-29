@@ -299,8 +299,32 @@ string multiply(const string & num1 , const string & num2 ) {
 }
 
 
+
+string factorial (const int &num) {
+    string result ="1" ;
+    string count = "0" ;
+    for (int i=0 ; i<num ;i++) {
+        count = sum(count,"1") ;
+        result= multiply(result,count) ;
+    }
+    return result ;
+         
+    }
+
+string pow(const string &num,const int & power){
+    string result = num ;
+    for (int i = 1; i<power;i++ ){
+        result = multiply(result,num) ;
+    }
+    return result ;
+    
+}
+
+
 int main() {
     cout << sum ("2","2") << endl;
-    cout << multiply("2","2") ;
-    
+    cout << multiply("2","2") << endl ;
+    cout << pow (factorial(120),2) << endl ;
+    cout << sum ("999","1") << endl ;
+    cout << multiply ("536","100") <<endl ;
    }
