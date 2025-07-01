@@ -296,15 +296,16 @@ string multiply(const string & num1 , const string & num2 ) {
 
 
 string factorial (int num) {
-    vector<int> result = {1};
-
-    for (int i = 2; i <= num; ++i) {
-        vector<int> current = str_to_vector(to_string(i));
-        result = vector_product(result, current);
+    vector <int> result = {1} ;
+    vector <int> count = {2} ;
+    for (int i=2 ; i<=num ; i++) {
+        result = vector_product(result,count) ;
+        count = add_vectors(count,{1}) ;
     }
     return vector_to_str(result) ;
-         
-    }
+}
+
+
 
 string pow(const string &num,int power){
     string result = num ;
