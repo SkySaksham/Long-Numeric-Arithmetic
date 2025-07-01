@@ -295,7 +295,7 @@ string multiply(const string & num1 , const string & num2 ) {
 
 
 
-string factorial (const int &num) {
+string factorial (int num) {
     vector<int> result = {1};
 
     for (int i = 2; i <= num; ++i) {
@@ -306,7 +306,7 @@ string factorial (const int &num) {
          
     }
 
-string pow(const string &num,const int & power){
+string pow(const string &num,int power){
     string result = num ;
     for (int i = 1; i<power;i++ ){
         result = multiply(result,num) ;
