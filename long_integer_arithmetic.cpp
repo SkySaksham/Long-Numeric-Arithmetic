@@ -72,7 +72,7 @@ vector <int> str_to_vector (const string & data ) {
         -    result --> string containing digits of vector in reverse order 
 */          
 
-string vector_to_str(const vector <int> data) {
+string vector_to_str(const vector <int> &data) {
         string result ;
         for (int i=data.size() -1 ; i>=0 ; i-- ){
             result += data[i] + '0' ;
