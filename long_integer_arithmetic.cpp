@@ -115,41 +115,37 @@ vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
   vector <int> result_num ; 
   // Stores Integer In reverse Order 
   // eg. 123 --> 321 
+
+  const vector <int>* bigger ;
+  const vector <int>* smaller ;
       
   int size_num1 , size_num2  ;   
   size_num1= num1.size () ;
   size_num2 = num2.size () ;
   
- 
-  vector <int> data1 , data2 ;
-  // data1 --> smaller vector
-  // data2 --> larger vector
-  
-   if (size_num1 >= size_num2) {
-      data1= num2 ;
-      data2 = num1 ;
-  }
-  else {
-      data1= num1 ;
-      data2 = num2 ;
-  }
-  
-    
   int size1 , size2  ;
   // Size1 --> size of smaller vector
   // Size2 --> size of larger vector
+ 
   
-  size1= data1.size() ;
-  size2= data2.size() ;
+   if (size_num1 >= size_num2) {
+      size1 = size_num2 ;
+      size2 = size_num1 ;
+      bigger = &num1 ;
+      smaller = &num2 ;
+  }
+  else {
+      size1= size_num1 ;
+      size2 = size_num2 ;
+      bigger = &num2 ;
+      smaller = &num1 ;
+  }
   
-  
-  
+    
   int carry =0 ;
   
-  // loop 1 --> 
-  
   for (int i = 0 ; i<size1  ; i++){
-  int sum = data1[i] + data2[i] +  carry;
+  int sum = (*bigger)[i] + (*smaller)[i] +  carry;
       if ( sum >9 ) {
            carry  =1 ;
            sum-=10 ;
@@ -160,10 +156,9 @@ vector <int> add_vectors( const vector<int> &num1 , const vector <int> &num2) {
       result_num.push_back(sum)  ;
       }
 
-   // loop 2 -->
 
    for (int i= size1 ; i<size2 ; i++){
-       int sum = data2[i]+carry ;
+       int sum = (*bigger)[i]+carry ;
        if ( sum<10 ) {
            carry=0 ;
            }
@@ -301,13 +296,13 @@ string multiply(const string & num1 , const string & num2 ) {
 
 
 string factorial (const int &num) {
-    string result ="1" ;
-    string count = "0" ;
-    for (int i=0 ; i<num ;i++) {
-        count = sum(count,"1") ;
-        result= multiply(result,count) ;
+    vector<int> result = {1};
+
+    for (int i = 2; i <= num; ++i) {
+        vector<int> current = str_to_vector(to_string(i));
+        result = vector_product(result, current);
     }
-    return result ;
+    return vector_to_str(result) ;
          
     }
 
