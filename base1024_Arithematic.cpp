@@ -125,7 +125,7 @@ vector<int> int_to_vector(long long int num) {
 
 
 
-vector <int> add_106_vector(const vector <int> &num1 , const vector <int> &num2) {
+vector <int> add_1024_vector(const vector <int> &num1 , const vector <int> &num2) {
   
   vector <int> result_num ;
   
@@ -159,7 +159,7 @@ vector <int> add_106_vector(const vector <int> &num1 , const vector <int> &num2)
   
   for (int i = 0 ; i<size1 ; i++){
   int sum = (*bigger)[i] + (*smaller)[i] +  carry;
-      if ( sum >) {
+      if ( sum >=1024) {
            carry  =1 ;
            sum = sum%1024 ;
            }
