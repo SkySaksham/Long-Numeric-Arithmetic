@@ -1,3 +1,8 @@
+// The is Base 10 Arithemetic version ..
+
+
+
+
 #include <iostream>
 #include <vector>
 #include <string>
