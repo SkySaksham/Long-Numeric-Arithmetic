@@ -1,4 +1,9 @@
-// Work Under Progress ... Fastest Version so far ..
+// legacy code now !! .. already switched to base 10^9
+
+
+// Work Under Progress ...
+
+
 
 #include <iostream>
 #include <vector>
