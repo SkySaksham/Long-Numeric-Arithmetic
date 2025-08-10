@@ -1,74 +1,30 @@
-# Long_Integer_Arithematic
+# Long-Numeric-Arithemetic
 
-READ ME ISNT UPDATED FOR THE LATEST VERSION !!
+A work-in-progress C++ library for doing arithmetic on numbers larger than built-in data types, with exact decimal precision.  
+Stores digits in vectors with base 10^9 or 10^18 (chosen automatically depending on compiler and CPU).
 
-## Overview
-This is a **C++** project that implements arithmetic operations on very large integers (beyond the range of built-in data types like `int` or `long long`) by using `std::vector<int>` to store digits in reverse order.
+## Folders
 
-## Features
+- **Long-Numeric-Arithemetic** – Current work-in-progress version of the library.
+- **Legacy-Code** – Earlier versions with basic arithmetic and experiments on base 10, base 1024, and base 10^6.
+- **Benchmarks** – Benchmarking results and comparisons with other libraries.
 
-- Addition of large integers (`sum` function)
-- Multiplication of large integers (`multiply` function)
-- Exponentiation of large integers (`pow` function)
-- Factorial of large integers (`factorial` function)
-- Conversion between `string` and `vector<int>` representations
+## Features (in progress)
 
-## How It Works
+- Arbitrary length integers and decimals
+- Exact decimal precision
+- Basic arithmetic (add, subtract, multiply, divide)
+- Vector-based storage with large base
+- Benchmark scripts
 
-1. **Storage**:
-   - Large integers are stored in reverse using vectors.
-   - Example: `123` is stored as `{3, 2, 1}`.
+## Planned Features
 
-2. **Addition**:
-   - Simulates digit-wise addition from least to most significant digit.
-   - Handles carry propagation.
+- Simpler and more user-friendly API
+- Karatsuba multiplication for faster performance
+- Division with exact decimal precision
+- More features and goals will be added as progress is made
 
-3. **Multiplication**:
-   - Uses long multiplication (similar to the manual method).
-   - Includes handling of carries and alignment using zero-padding.
+## Status
 
-4. **Factorial and Power**:
-   - `factorial(n)` returns `n!` as a string.
-   - `pow(num, power)` returns `num^power` as a string.
+Still under development. Expect frequent updates and changes.
 
-## Functions
-
-| Function          | Purpose                                      |
-|-------------------|----------------------------------------------|
-| `vector_print`    | Print a vector (in reversed digit order)     |
-| `str_to_vector`   | Converts a number in string to vector format |
-| `vector_to_str`   | Converts vector to string format             |
-| `add_vectors`     | Adds two vectors of digits                   |
-| `vector_product`  | Multiplies two vectors of digits             |
-| `sum`             | Adds two string-represented integers         |
-| `multiply`        | Multiplies two string-represented integers   |
-| `factorial`       | Calculates factorial of a number             |
-| `pow`             | Raises a string-represented number to power  |
-
-## Sample Output
-
-```
-4
-4
-<huge number from factorial(120)^2>
-1000
-53600
-```
-
-## How to Compile
-
-```bash
-g++ main.cpp -o LongIntMath
-./LongIntMath
-```
-
-## Future Improvements
-
-- Implement subtraction and division.
-- Add error handling for invalid inputs.
-- Support negative numbers.
-- Add unit tests.
-
-## License
-
-This project is open-source and free to use under the **MIT License**.
