@@ -14,7 +14,8 @@ This folder contains benchmarking results and scripts comparing the performance 
 ## Compiler Flags (C++)
 
 All C++ benchmarks were compiled with the following flags for maximum optimization:  
--O3 -march=native -mtune=native
+
+- -O3 -march=native -mtune=native
 
 ## Benchmark Process
 
