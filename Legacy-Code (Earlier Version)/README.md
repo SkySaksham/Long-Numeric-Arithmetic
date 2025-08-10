@@ -1,7 +1,5 @@
 # Long_Integer_Arithematic
 
-READ ME ISNT UPDATED FOR THE LATEST VERSION !!
-
 ## Overview
 This is a **C++** project that implements arithmetic operations on very large integers (beyond the range of built-in data types like `int` or `long long`) by using `std::vector<int>` to store digits in reverse order.
 
