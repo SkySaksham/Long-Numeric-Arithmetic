@@ -30,6 +30,8 @@ void vec_multiply(vector<uint64_t> &num1,uint64_t x ) {
 }
 
 
+
+
 string vec_str(const vector<uint64_t> &num) {
     string result = to_string(num.back());
 
@@ -43,6 +45,8 @@ string vec_str(const vector<uint64_t> &num) {
 
     return result;
 }
+
+
 
 string factorial(uint64_t n){
     vector <uint64_t> a ;
@@ -95,6 +99,20 @@ string factorial(uint64_t n){
 
 }
 
+
+
+int main () {
+    cout << factorial(100000).size()<< endl; // CHANGE INPUT
+    cout << factorial(2)<< endl;
+    cout << factorial(3)<< endl;
+    cout << factorial(4)<< endl;
+    cout << factorial(5)<< endl;
+    cout << factorial(6)<< endl;
+    return 0;
+}
+
+
+
 /*
 int main () {
  
@@ -142,13 +160,3 @@ auto start = high_resolution_clock::now();
     
     cout << "Factorial :"<< 10000<< endl ;
 }*/
-
-int main () {
-    cout << factorial(100000).size()<< endl; // CHANGE INPUT
-    cout << factorial(2)<< endl;
-    cout << factorial(3)<< endl;
-    cout << factorial(4)<< endl;
-    cout << factorial(5)<< endl;
-    cout << factorial(6)<< endl;
-    return 0;
-}
