@@ -28,18 +28,22 @@ private  :
    
 public:
        
+      // Default constructor
+      Number() ;
+      
       Number(const vector<uint64_t>& num, bool sign = 0, int deci_1 = -1, int deci_2 = -1);
-       // Constructor to initialize the number
+      // Constructor to initialize the number
        
        
-        
-       
-/*Number(const vector<int>& num, bool sign = 0, int deci_1 = -1, int deci_2 = -1) {
-    this->num = num;
-    this->sign = sign;
-    this->deci_1 = deci_1;
-    this->deci_2 = deci_2;
-}*/
+       void clear() {
+           num.clear();
+           sign = 0;
+           deci_1 = -1;
+           deci_2 = -1;
+       }
+       // Function to clear the number
+
+
        //**GETTER FUNCTIONS**
        const vector<uint64_t>& getNum() const { 
        return num; 
@@ -54,4 +58,3 @@ public:
 
 
 #endif  //NUMBER_H
-
