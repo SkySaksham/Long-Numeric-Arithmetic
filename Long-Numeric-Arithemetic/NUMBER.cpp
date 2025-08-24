@@ -10,3 +10,10 @@ Number::Number(const vector<uint64_t>& inputNum, bool inputSign, int inputDeci1,
     deci_1 = inputDeci1;
     deci_2 = inputDeci2;
 }
+
+Number::Number() {
+    num = {};      // empty vector
+    sign = true;   // default sign (+)
+    deci_1 = 0;
+    deci_2 = 0;
+
