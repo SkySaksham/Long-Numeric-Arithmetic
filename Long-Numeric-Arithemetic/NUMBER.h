@@ -13,8 +13,8 @@ class Number {
 private  :
         vector <uint64_t> num ;
         // Stores the number as a vector of digits 
-        // with base 1e8 in reverse order 
-        // Example : 1212345678 --> {123345678 , 12 }  (reverse order)
+        // with base 1e9 in reverse order 
+        // Example : 1212345678 --> {1233456789, 12 }  (reverse order)
        
        bool sign ;
        // 0 -> +ve  || 1 -> -ve
