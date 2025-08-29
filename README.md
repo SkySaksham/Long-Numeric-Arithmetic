@@ -1,30 +1,70 @@
-# Long-Numeric-Arithemetic
+Long Numeric Arithmetic Library
 
-A work-in-progress C++ library for doing arithmetic on numbers larger than built-in data types, with exact decimal precision.  
-Stores digits in vectors with base 10^9 or 10^18 (chosen automatically depending on compiler and CPU).
+A C++ library for handling very large numbers with support for basic arithmetic and factorial calculations.  
+Currently supports integers, signs, and string conversion, with room for future expansion.
 
-## Folders
+---
 
-- **Long-Numeric-Arithemetic** – Current work-in-progress version of the library.
-- **Legacy-Code** – Earlier versions with basic arithmetic and experiments on base 10, base 1024, and base 10^6.
-- **Benchmarks** – Benchmarking results and comparisons with other libraries.
+Current Features
 
-## Features (in progress)
+- Representation of large numbers with:
+  - Sign (positive/negative)
+  - Length tracking
+  - Optional decimals (storage ready, not yet used in operations)
+- Arithmetic support:
+  - Addition of two numbers with the same sign (integers only)
+- Factorial calculation
+- Utilities:
+  - numb_print() – print the number
+  - numb_to_str() – convert number to string
 
-- Arbitrary length integers and decimals
-- Exact decimal precision
-- Basic arithmetic (add, subtract, multiply, divide)
-- Vector-based storage with large base
-- Benchmark scripts
+---
 
-## Planned Features
+Example Usage
 
-- Simpler and more user-friendly API
-- Karatsuba multiplication for faster performance
-- Division with exact decimal precision
-- More features and goals will be added as progress is made
+#include "Number.h"
+#include "NumberUtils.h"
+#include "operations/addition.h"
+#include "special_ops/factorialbase9.h"
 
-## Status
+int main() {
+    Number num;
+    str_to_numb("12345678901234567890", num);
+    numb_print(num); // prints the number
 
-Still under development. Expect frequent updates and changes.
+    Number fact = factorial(100);
+    numb_print(fact);
+
+    return 0;
+}
+
+---
+
+Folder Structure
+
+Long-Numeric-Arithmetic/
+├─ src/
+│  ├─ operations/       # Current: addition
+│  ├─ special_ops/      # Current: factorial
+│  ├─ Number.h          # Number class definition
+│  └─ NumberUtils.h     # Helper functions (str_to_numb, numb_to_str)
+├─ main.cpp             # Example usage
+└─ CMakeLists.txt       # Build configuration
+
+---
+
+Future Plans
+
+- Support addition and subtraction with different signs
+- Decimal arithmetic
+- Multiplication and division
+- More optimized factorial algorithms for very large numbers
+- Exponentiation and roots
+- Make the library fully modular and ready for external use
+
+---
+
+License
+
+MIT License – free to use, modify, and contribute.
 
