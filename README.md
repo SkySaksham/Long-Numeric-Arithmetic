@@ -1,27 +1,31 @@
-##Long Numeric Arithmetic Library
+#  Long Numeric Arithmetic Library
 
-A C++ library for handling very large numbers with support for basic arithmetic and factorial calculations.  
+A C++ library for handling **very large numbers**, supporting basic arithmetic and factorial calculations.
 Currently supports integers, signs, and string conversion, with room for future expansion.
 
 ---
 
-Current Features
+##  Features
 
-- Representation of large numbers with:
-  - Sign (positive/negative)
-  - Length tracking
-  - Optional decimals (storage ready, not yet used in operations)
-- Arithmetic support:
-  - Addition of two numbers with the same sign (integers only)
-- Factorial calculation
-- Utilities:
-  - numb_print() – print the number
-  - numb_to_str() – convert number to string
+* Representation of large numbers:
+
+  * Sign (positive / negative)
+  * Length tracking
+  * Optional decimals (storage ready, operations not implemented yet)
+* Arithmetic support:
+
+  * Addition of two numbers with the same sign (integers only)
+* Factorial calculation
+* Utility functions:
+
+  * `numb_print()` – Print the number
+  * `numb_to_str()` – Convert number to string
 
 ---
 
-Example Usage
+##  Example Usage
 
+```cpp
 #include "Number.h"
 #include "NumberUtils.h"
 #include "operations/addition.h"
@@ -32,16 +36,18 @@ int main() {
     str_to_numb("12345678901234567890", num);
     numb_print(num); // prints the number
 
-    Number fact = factorial(100);
+    Number fact = factorial(10000);
     numb_print(fact);
 
     return 0;
 }
+```
 
 ---
 
-Folder Structure
+##  Folder Structure
 
+```
 Long-Numeric-Arithmetic/
 ├─ src/
 │  ├─ operations/       # Current: addition
@@ -50,21 +56,23 @@ Long-Numeric-Arithmetic/
 │  └─ NumberUtils.h     # Helper functions (str_to_numb, numb_to_str)
 ├─ main.cpp             # Example usage
 └─ CMakeLists.txt       # Build configuration
+```
 
 ---
 
-Future Plans
+## 🛠 Future Plans
 
-- Support addition and subtraction with different signs
-- Decimal arithmetic
-- Multiplication and division
-- More optimized factorial algorithms for very large numbers
-- Exponentiation and roots
-- Make the library fully modular and ready for external use
+* Support addition & subtraction with different signs
+* Decimal arithmetic operations
+* Multiplication & division
+* Optimized factorial algorithms for very large numbers
+* Exponentiation and roots
+* Fully modular library ready for external use
 
 ---
 
-License
+##  License
 
 MIT License – free to use, modify, and contribute.
+
 
