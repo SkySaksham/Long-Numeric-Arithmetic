@@ -49,6 +49,8 @@ int main() {
 
 ```
 Long-Numeric-Arithmetic/
+├─ benchmarks           # Benchmarks with other libraries
+├─ legacy-code          # Previous Implementations
 ├─ src/
 │  ├─ operations/       # Current: addition
 │  ├─ special_ops/      # Current: factorial
