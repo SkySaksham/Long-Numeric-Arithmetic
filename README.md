@@ -1,4 +1,4 @@
-Long Numeric Arithmetic Library
+##Long Numeric Arithmetic Library
 
 A C++ library for handling very large numbers with support for basic arithmetic and factorial calculations.  
 Currently supports integers, signs, and string conversion, with room for future expansion.
