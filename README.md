@@ -33,7 +33,7 @@ Currently supports integers, signs, and string conversion, with room for future 
 
 int main() {
     Number num;
-    str_to_numb("12345678901234567890", num);
+    str_to_numb("-12321234567.123456789012344334567890", num);
     numb_print(num); // prints the number
 
     Number fact = factorial(10000);
