@@ -51,11 +51,21 @@ int main() {
 Long-Numeric-Arithmetic/
 ├─ benchmarks           # Benchmarks with other libraries
 ├─ legacy-code          # Previous Implementations
-├─ src/
-│  ├─ operations/       # Current: addition
+├─ include/
+|  ├─ operations/      # Current: addition
+|  |  └─ addition.h
 │  ├─ special_ops/      # Current: factorial
+|  |  └─ factorialbase9.h 
 │  ├─ Number.h          # Number class definition
 │  └─ NumberUtils.h     # Helper functions (str_to_numb, numb_to_str)
+├─ src /
+|  ├─ operator.cpp     
+│  ├─ operations/
+|  |  └─ addition.h      
+│  ├─ special_ops/
+|  |  └─ factorialbase9.cpp      
+│  ├─ Number.cpp    
+│  └─ NumberUtils.cpp    
 ├─ main.cpp             # Example usage
 └─ CMakeLists.txt       # Build configuration
 ```
