@@ -26,19 +26,41 @@ Currently supports integers, signs, and string conversion, with room for future 
 ##  Example Usage
 
 ```cpp
-#include "Number.h"
-#include "NumberUtils.h"
-#include "operations/addition.h"
-#include "special_ops/factorialbase9.h"
+#include "long_numeric_arithemetic.h"
 
-int main() {
-    Number num;
-    str_to_numb("-12321234567.123456789012344334567890", num);
-    numb_print(num); // prints the number
+using namespace std ;
 
-    Number fact = factorial(10000);
-    numb_print(fact);
 
+int main () {
+    Number fact = factorial(10000) ; // Faster Than Sequential Factorial calc in Big Int Java
+
+    string data = numb_to_str(fact).substr(0,10) ;
+    cout << data << endl ;
+
+    Number a ;
+    Number b ;
+
+    str_to_numb("-123451.23499236325652399991",a) ;
+    str_to_numb("-67832678263123451.23499236325652399990",b) ;
+
+
+    if (a>b) {
+        cout << "a is greater than b" << endl ;
+    }
+
+    cout << operate(a,b,1) << endl ; // compares the absolute value of a & b ;
+    cout << operate(a,b) << endl ;   // compares the value of a & b ;
+
+    Number num1 ;
+    Number num2 ;
+
+    str_to_numb("125273763217384",num1) ;
+    str_to_numb("26167328162783",num2) ;
+
+    numb_print(add(num1,num2)) ; // add works for only same signed integers atm 
+
+
+    
     return 0;
 }
 ```
