@@ -52,8 +52,9 @@ Long-Numeric-Arithmetic/
 ├─ benchmarks           # Benchmarks with other libraries
 ├─ legacy-code          # Previous Implementations
 ├─ include/
-|  ├─ operator.h      # relation ship operators for Number
-|  ├─ operations/      # Current: addition
+|  ├─ long_numeric_arithemetic.h     # Main Header File
+|  ├─ operator.h        # relation ship operators for Number
+|  ├─ operations/       # Current: addition
 |  |  └─ addition.h
 │  ├─ special_ops/      # Current: factorial
 |  |  └─ factorialbase9.h 
