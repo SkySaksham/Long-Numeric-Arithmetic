@@ -13,3 +13,4 @@
 int operate(const Number& num1, const Number& num2, int flag = 0);
 
 #endif // OPERATE_H
+
