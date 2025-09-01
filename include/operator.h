@@ -1,5 +1,5 @@
-#ifndef OPERATE_H
-#define OPERATE_H
+#ifndef OPERATOR_H
+#define OPERATOR_H
 
 #include "Number.h"
 #include "NumberUtils.h"
@@ -12,5 +12,6 @@
 // return -1 if num1 < num2
 int operate(const Number& num1, const Number& num2, int flag = 0);
 
-#endif // OPERATE_H
+#endif // OPERATOR_H
+
 
