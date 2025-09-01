@@ -52,6 +52,7 @@ Long-Numeric-Arithmetic/
 ├─ benchmarks           # Benchmarks with other libraries
 ├─ legacy-code          # Previous Implementations
 ├─ include/
+|  ├─ operator.h      # relation ship operators for Number
 |  ├─ operations/      # Current: addition
 |  |  └─ addition.h
 │  ├─ special_ops/      # Current: factorial
