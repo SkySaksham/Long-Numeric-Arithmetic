@@ -52,6 +52,15 @@ public:
        bool getSign() const { return sign; }
        int getDeci1() const { return deci_1; }
        int getDeci2() const { return deci_2; }
+
+
+        // friend relational operators
+        friend bool operator==(const Number& lhs, const Number& rhs);
+        friend bool operator!=(const Number& lhs, const Number& rhs);
+        friend bool operator<(const Number& lhs, const Number& rhs);
+        friend bool operator<=(const Number& lhs, const Number& rhs);
+        friend bool operator>(const Number& lhs, const Number& rhs);
+        friend bool operator>=(const Number& lhs, const Number& rhs);
     
     
 } ;
