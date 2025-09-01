@@ -17,3 +17,27 @@ Number::Number() {
     deci_1 = 0;
     deci_2 = 0;
 }
+
+bool operator==(const Number& lhs, const Number& rhs) {
+    return operate(lhs, rhs,0) == 0;
+}
+
+bool operator!=(const Number& lhs, const Number& rhs) {
+    return operate(lhs, rhs,0) != 0;
+}
+
+bool operator<(const Number& lhs, const Number& rhs) {
+    return operate(lhs, rhs,0) < 0;
+}
+
+bool operator<=(const Number& lhs, const Number& rhs) {
+    return operate(lhs, rhs,0) <= 0;
+}
+
+bool operator>(const Number& lhs, const Number& rhs) {
+    return operate(lhs, rhs,0) > 0;
+}
+
+bool operator>=(const Number& lhs, const Number& rhs) {
+    return operate(lhs, rhs,0) >= 0;
+}
