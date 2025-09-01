@@ -1,28 +1,26 @@
-#include "Number.h"
-#include "NumberUtils.h"
-#include "operations/addition.h"
-#include "special_ops/factorialbase9.h"
+#include "long_numeric_arithemetic.h"
+
+using namespace std ;
 
 
 int main () {
-    Number num1 ; 
-    Number num2 ;
+    Number fact = factorial(10000) ; // Faster Than Sequential Factorial calc in Big Int Java
 
-    /*str_to_numb("-11111111111111111111", num1);
-    str_to_numb("-10000000000000000000",num2);
+    string data = numb_to_str(fact).substr(0,10) ;
+    cout << data << endl ;
 
-    Number result = add(num1, num2);
-    numb_print(result);*/
+    Number a ;
+    Number b ;
+
+    str_to_numb("123451.23499236325652399991",a) ;
+    str_to_numb("67832678263123451.23499236325652399990",b) ;
+
+
+    if (a<b) {
+        cout << "a is smaller than b" << endl ;
+    }
+
+
     
-
-    Number result ;
-    
-    str_to_numb("-12345678901234567890.123456789", result);   
-
-    numb_print(result) ;
-
-    std::cout << "\n\n" ;
-    Number b = factorial(500);
-    numb_print(b) ;
     return 0;
 }
