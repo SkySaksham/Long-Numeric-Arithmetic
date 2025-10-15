@@ -35,4 +35,3 @@ add_executable(LongNumericArithmeticExe main.cpp)
 
 # Link executable to your library
 target_link_libraries(LongNumericArithmeticExe PRIVATE LongNumericArithmeticLib)
-

@@ -54,7 +54,7 @@ public:
        int getDeci2() const { return deci_2; }
 
 
-        // friend relational operators
+       // friend relational operators
         friend bool operator==(const Number& lhs, const Number& rhs);
         friend bool operator!=(const Number& lhs, const Number& rhs);
         friend bool operator<(const Number& lhs, const Number& rhs);

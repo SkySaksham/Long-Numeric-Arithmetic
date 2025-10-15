@@ -1,0 +1,36 @@
+# -------------------------
+# Build directories and binaries
+# -------------------------
+/build/
+/Benchmarks/**/!/*.exe
+*.exe
+*.a
+*.obj
+*.so
+*.dll
+*.out
+
+# CMake files
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.ninja
+*.ninja_deps
+*.ninja_log
+compile_commands.json
+
+# VSCode settings
+.vscode/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Python bytecode (for benchmarks)
+__pycache__/
+*.pyc
+
+# Temporary or backup files
+*~
+*.swp
+*.log

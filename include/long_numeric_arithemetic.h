@@ -6,4 +6,3 @@
 #include "special_ops/factorialbase9.h"
 #include "operator.h"
 
-

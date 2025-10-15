@@ -1,4 +1,6 @@
 #include "Number.h"
+#include "operator.h"
+
 #include <vector>
 #include <cstdint>
 using namespace std ;

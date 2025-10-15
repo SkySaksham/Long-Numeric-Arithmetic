@@ -4,6 +4,7 @@
 #include <string>
 #include "Number.h"
 
+
 using namespace std;
 
 
@@ -16,12 +17,12 @@ vector <uint64_t> sum1(const vector <uint64_t> &a, const vector <uint64_t> &b) {
     vector <uint64_t> result(max_size ) ;
 
     uint64_t carry = 0 ;
-    for (int i = 0 ; i < smaller.size() ; i++) { 
+    for (size_t i = 0 ; i < smaller.size() ; i++) { 
         uint64_t sum = carry + bigger[i] + smaller[i] ;
         result[i] = sum % 1000000000 ;
         carry = sum / 1000000000 ;
     }
-    for (int i = smaller.size() ; i < bigger.size() ; i++) {
+    for (size_t i = smaller.size() ; i < bigger.size() ; i++) {
         uint64_t sum = carry + (    bigger)[i] ;
         result[i] = sum % 1000000000 ;
         carry = sum / 1000000000 ;
