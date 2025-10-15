@@ -16,8 +16,8 @@ int main () {
     str_to_numb("67832678263123451.23499236325652399990",b) ;
 
 
-    if (a>b) {
-        cout << "a is greater than b" << endl ;
+    if (b>a) {
+        cout << "b is greater than a" << endl ;
     }
 
     cout << operate(a,b,1) << endl ; // compares the absolute value of a & b ;
