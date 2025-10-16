@@ -21,7 +21,7 @@ class Number {
         Number() :
             isNegative(false),decimalBlockIndex(-1),decimalDigitIndex(-1),digits({0}) {}
       
-        explicit Number(const vector<uint64_t>& digits, bool isNegative = false, int decimalBlockIndex= -1, int decimalDigitIndex = -1);
+        explicit Number(const std::vector<uint64_t>& digits, bool isNegative = false, int decimalBlockIndex= -1, int decimalDigitIndex = -1);
     
         void clear() {
             digits={0};
@@ -30,7 +30,7 @@ class Number {
             decimalDigitIndex = -1;
         }
 
-        const vector<uint64_t>& getDigits() const { 
+        const std::vector<uint64_t>& getDigits() const { 
             return digits; 
         }
        
