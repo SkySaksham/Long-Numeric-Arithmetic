@@ -5,66 +5,46 @@
 #include <iostream>
 #include <cstdint>
 
-using namespace std ;
-
 class Number {
-    
-
-private  :
-        vector <uint64_t> num ;
-        // Stores the number as a vector of digits 
+    private  :
+        std::vector<uint64_t> digits;
         // with base 1e9 in reverse order 
         // Example : 12123456789 --> {1233456789 , 12 }  (reverse order)
        
-       bool sign ;
-       // 0 -> +ve  || 1 -> -ve
+        bool isNegative;
        
-       int deci_1, deci_2 ;
-       // For Decimal Precision
-       // decimal point is in (num.size() - deci_1)th element in Nums 
-       // at (deci_2)th index in that element
+        int decimalBlockIndex, decimalDigitIndex;
+        // Block Index is reverse indexed
+        // DigitIndex is normal indexed
    
-   
-   
-public:
-       
-      // Default constructor
-      Number() ;
+    public:
+        Number() :
+            isNegative(false),decimalBlockIndex(-1),decimalDigitIndex(-1),digits({0}) {}
       
-      Number(const vector<uint64_t>& num, bool sign = 0, int deci_1 = -1, int deci_2 = -1);
-      // Constructor to initialize the number
+        explicit Number(const vector<uint64_t>& digits, bool isNegative = false, int decimalBlockIndex= -1, int decimalDigitIndex = -1);
+    
+        void clear() {
+            digits={0};
+            isNegative = false;
+            decimalBlockIndex = -1;
+            decimalDigitIndex = -1;
+        }
+
+        const vector<uint64_t>& getDigits() const { 
+            return digits; 
+        }
        
-       
-       void clear() {
-           num.clear();
-           sign = 0;
-           deci_1 = -1;
-           deci_2 = -1;
-       }
-       // Function to clear the number
+        bool getIsNegative() const { return isNegative; }
+        int getDecimalBlockIndex() const { return decimalBlockIndex; }
+        int getDecimalDigitIndex() const { return decimalDigitIndex; }
 
-
-       //**GETTER FUNCTIONS**
-       const vector<uint64_t>& getNum() const { 
-       return num; 
-       }
-       
-       bool getSign() const { return sign; }
-       int getDeci1() const { return deci_1; }
-       int getDeci2() const { return deci_2; }
-
-
-       // friend relational operators
         friend bool operator==(const Number& lhs, const Number& rhs);
         friend bool operator!=(const Number& lhs, const Number& rhs);
         friend bool operator<(const Number& lhs, const Number& rhs);
         friend bool operator<=(const Number& lhs, const Number& rhs);
         friend bool operator>(const Number& lhs, const Number& rhs);
-        friend bool operator>=(const Number& lhs, const Number& rhs);
-    
-    
-} ;
+        friend bool operator>=(const Number& lhs, const Number& rhs);  
+};
 
-
-#endif  //NUMBER_H
+#endif  
 

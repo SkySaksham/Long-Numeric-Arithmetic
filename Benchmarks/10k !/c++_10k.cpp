@@ -53,9 +53,7 @@ string vec_str(const vector<uint64_t> &num) {
 
 
 
-string factorial(uint64_t n){
-    vector <uint64_t> a ;
-    a.push_back(1) ;
+void factorial(uint64_t n,vector <uint64_t>&a ){
 
     if (n<=1000) {
         int i = 2 ;
@@ -67,8 +65,8 @@ string factorial(uint64_t n){
         for (;i<=n;i++){ ;
             vec_multiply(a,i) ;
         }
-
-        return vec_str(a);
+        return ;
+        //return vec_str(a);
     }
     else if (n<=10000) {
         a.reserve(4500) ;
@@ -84,7 +82,7 @@ string factorial(uint64_t n){
         for (;i<=n;i++){ ;
             vec_multiply(a,i) ;
         }
-        return vec_str(a);
+        return ;
     }
     
     a.reserve(60000) ;
@@ -100,7 +98,7 @@ string factorial(uint64_t n){
 
     for (int j = 10001 ; j<=n ; j++) vec_multiply(a,j) ;
 
-    return vec_str(a);
+    return ; //vec_str(a);
 
 }
 
@@ -115,10 +113,15 @@ int main () {
     string first_ten_digits = "2846259680";
 
     // 3 WARM UP RUNS 
-    string data;
 
-    for (int i=0;i<3;i++) data = factorial(10000);
-
+    for (int i=0;i<3;i++){
+        vector <uint64_t> data{1};
+        factorial(10000,data);
+    } 
+        
+    vector <uint64_t> dat{1};
+    factorial(10000,dat) ;
+    string data = vec_str(dat);
     if (data.size() != total_digits && data.substr(0, 10) != first_ten_digits) {
         cout << "Warm-up run failed: Incorrect number of digits or first ten digits." << endl;
         return 1;
@@ -135,7 +138,8 @@ int main () {
         cout << endl << "Run " << (i + 1) << ": " << endl;
         
         auto start = high_resolution_clock::now();
-        string result = factorial(10000);
+        vector <uint64_t> result{1} ;
+        factorial(10000,result) ;
         auto end = high_resolution_clock::now();
 
         long long duration = duration_cast<milliseconds>(end - start).count();
