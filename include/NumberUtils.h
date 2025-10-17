@@ -11,9 +11,9 @@
 std::string numb_to_str(const Number& numb);
 
 // Prints a Number object to stdout
-void numb_print(const Number& numb);
+void numb_print(const Number& numb, std::ostream &out);
 
 // Converts a string representation to a Number object
-void str_to_numb(const std::string& numb, Number& out);
+Number str_to_numb(const std::string& numb);
 
 #endif // NUMBERUTILS_H

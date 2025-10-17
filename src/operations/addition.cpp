@@ -34,10 +34,10 @@ vector <uint64_t> sum1(const vector <uint64_t> &a, const vector <uint64_t> &b) {
 
 
 Number add(const Number &A, const Number &B) {
-    if (A.getSign() == B.getSign()) {
+    if (A.getIsNegative() == B.getIsNegative()) {
         // Both numbers have the same sign, perform addition
-        vector<uint64_t> resultNum = sum1(A.getNum(), B.getNum());
-        return Number(resultNum, A.getSign(), -1, -1); // Decimal precision handling can be added
+        vector<uint64_t> resultNum = sum1(A.getDigits(), B.getDigits());
+        return Number(resultNum, A.getIsNegative(), -1, -1); // Decimal precision handling can be added
     } 
 
     // If signs are different, perform subtraction (not implemented here)

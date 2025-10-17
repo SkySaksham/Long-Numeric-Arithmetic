@@ -133,8 +133,8 @@ int operate (const Number & num1 ,const Number & num2,int flag = 0) {
     if (!flag) {
 
         bool sign1 , sign2 ;
-        sign1 = num1.getSign() ;
-        sign2 = num2.getSign() ;
+        sign1 = num1.getIsNegative() ;
+        sign2 = num2.getIsNegative() ;
 
         if (sign1 > sign2) return -1 ;
         else if (sign1 < sign2 ) return 1 ;
@@ -142,14 +142,14 @@ int operate (const Number & num1 ,const Number & num2,int flag = 0) {
         else if (sign1) flag2=0 ;
     } 
 
-    const vector <uint64_t>& veca = num1.getNum() ;        
-    const vector <uint64_t>& vecb = num2.getNum() ;
+    const vector <uint64_t>& veca = num1.getDigits() ;        
+    const vector <uint64_t>& vecb = num2.getDigits() ;
 
-    int  d1 = num1.getDeci1() ;
-    int dd1 = num1.getDeci2() ;
+    int  d1 = num1.getDecimalBlockIndex() ;
+    int dd1 = num1.getDecimalDigitIndex() ;
 
-    int  d2 = num2.getDeci1() ;
-    int dd2 = num2.getDeci2() ;
+    int  d2 = num2.getDecimalBlockIndex() ;
+    int dd2 = num2.getDecimalDigitIndex() ;
     
     int diff = d1-d2 ;
     
