@@ -7,112 +7,127 @@
 using namespace std ;
 
 
-string numb_to_str (const Number & numb ) {
-    string result ="" ;
+int64_t str_int(std::string_view x) ;
+int64_t str_int1(std::string_view x) ;
+static constexpr int blockSize = 9 ; // Each block holds 9 digits (base 1e9)
+
+
+
+std::string numb_to_str (const Number & numberObj ) {
+
+    auto insert_decimal = [](const std::string s , const int digitIndex ){
+        
+        // decimalDigitIndex = 3 means after 3 digits from left
+        // "123456789" --> "123.456789"
+        return s.substr(0,digitIndex)+"."+s.substr(digitIndex);
+    };
     
-    const vector <uint64_t> &num= numb.getNum() ;
-    int size = num.size()-1 ;
-    int deci_1 = numb.getDeci1() ;
-    int deci_2 = numb.getDeci2() ;
+    std::string result ="";
     
-    if (numb.getSign()) { result = "-" ; }
+    const std::vector<uint64_t> &num= numberObj.getDigits();
+    int size = num.size()-1;
+    int blockIndex = numberObj.getDecimalBlockIndex(); // Reverse indexed - 0th block is the rightmost block
+    int digitIndex = numberObj.getDecimalDigitIndex(); // Normal indexed - 0th digit is the leftmost digit in a block
     
-    string digit = to_string(num[size]);
+    if (numberObj.getIsNegative()) result = "-";
     
-    if (deci_1==0) {
-       digit = digit.substr(0,deci_2)+"."+digit.substr(deci_2,digit.size()-deci_2) ;
+    std::string digit = to_string(num[size]);
+    
+    if (blockIndex==0) {
+        if (digitIndex==0&&blockIndex==0) result+="0." ;
+        else digit = insert_decimal(digit,digitIndex) ;
     }
     
-    result+=digit ;
+    result+=digit;
     
     for (int i=size-1; i>=0 ; i-- ) {
-        digit = to_string(num[i]) ;
-        while (digit.size ()<9) {
-            digit = "0"+digit ;
+        digit = to_string(num[i]);
+
+        // Pad leading zeros if necessary
+        if (digit.size() < blockSize ) digit = std::string (blockSize-digit.size(),'0') + digit;
+
+        // Check if decimal point is in this block
+        if (size-i==blockIndex){
+            if (digitIndex==0&&blockIndex==0) result+="0";
+
+            // Insert decimal point
+            digit = insert_decimal(digit,digitIndex) ;
         }
-        if (size-i==deci_1){
-            if (deci_2==0&&deci_1==0) {result+="0" ;}
-            digit = digit.substr(0,deci_2)+"."+digit.substr(deci_2,9-deci_2) ;
-        }
-     result += digit ;   
+        
+        result += digit;   
     } 
     
-    return result ;
+    return result;
 }
 
 
 
-void numb_print(const Number & numb) {
-     const vector <uint64_t> &num= numb.getNum() ;
+void numb_print(const Number & numberObject,std::ostream &out) {
+    
+    auto insert_decimal = [](const std::string s , const int digitIndex ){
+        
+        // decimalDigitIndex = 3 means after 3 digits from left
+        // "123456789" --> "123.456789"
+        return s.substr(0,digitIndex)+"."+s.substr(digitIndex);
+    };
+
+    const vector <uint64_t> &num= numberObject.getDigits() ;
     int size = num.size()-1 ;
-    int deci_1 = numb.getDeci1() ;
-    int deci_2 = numb.getDeci2() ;
+    int blockIndex = numberObject.getDecimalBlockIndex() ;
+    int digitIndex = numberObject.getDecimalDigitIndex() ;
     
-    if (numb.getSign()) {  cout << "-" ; }
+    if (numberObject.getIsNegative()) out<<"-";
     
-    string digit = to_string(num[size]);
+    std::string digit = to_string(num[size]);
     
-    if (deci_1==0) {
-       digit = digit.substr(0,deci_2)+"."+digit.substr(deci_2,digit.size()-deci_2) ;
+    if (blockIndex==0) {
+        if (digitIndex==0&&blockIndex==0) out<<"0." ;
+        else digit = insert_decimal(digit,digitIndex) ;
     }
     
-    cout << digit ;
+    out<<digit;
     
     for (int i=size-1; i>=0 ; i-- ) {
-        digit = to_string(num[i]) ;
-        while (digit.size ()<9) {
-            digit = "0"+digit ;
+        digit = to_string(num[i]);
+
+        // Pad leading zeros if necessary
+        if (digit.size() < blockSize ) digit = std::string (blockSize-digit.size(),'0') + digit;
+
+        // Check if decimal point is in this block
+        if (size-i==blockIndex){
+            if (digitIndex==0&&blockIndex==0) out << "0";
+
+            // Insert decimal point
+            digit = insert_decimal(digit,digitIndex) ;
         }
-        if (size-i==deci_1){
-            if (deci_2==0&&deci_1==0) {cout <<"0" ;}
-            digit = digit.substr(0,deci_2)+"."+digit.substr(deci_2,9-deci_2) ;
-         }
-     cout << digit ;   
+        
+        out << digit;   
     } 
     
 }
 
 
 
-int64_t str_int(string_view x) {
-    
-    // IM SAVING 10 NANO SECONDS FK READABILITY 
-    
-    int64_t result = 100000000*(x[0]-48)+ 10000000*(x[1]-48)  ;
-    result += 1000000*(x[2]-48) +100000*(x[3]-48) ;
-    return result + 10000*(x[4]-48) + 1000*(x[5]-48) + 100*(x[6]-48) + 10*(x[7]-48) + (x[8]-48) ;    
-}
+void str_to_numb (const string &number , Number & numb) {
+    numb.clear() ;
 
-int64_t str_int1(string_view x) {
-        int64_t result = x.back() -48 ;
-        int64_t b=1 ;
-        for (int i=x.size()-2;i>=0;--i){
-            b*=10 ;
-            result+=(x[i]-48)*b;
-        }
-        return result ;
-}
+    bool isNegative = 0 ;
+    bool isSignPresent = 0 ; //  Sign Present Flag
+    int blockIndex=-1 ;
+    int digitIndex = -1 ;
 
-void str_to_numb (const string &numb , Number & haha) {
-    haha.clear() ;
+    // numberObject --> Number
 
-    bool sign = 0 ;
-    bool check = 0 ; // to check if there is numb sign
-    int deci_1=-1 ;
-    int deci_2 = -1 ;
+    if (number[0] == '-') { isNegative = 1 ; isSignPresent = 1;}
+    if (number[0] == '+'){isSignPresent = 1 ;} 
 
-    // numb --> Number
+    string_view chunk(number); 
 
-    if (numb[0] == '-') { sign = 1 ; check = 1;}
-    if (numb[0] == '+'){check = 1 ;} 
-
-    string_view chunk(numb); 
-
-    int chunk_size = numb.size()/9; // number of full 8 digit parts 
+    int chunk_size = number.size()/9; // number of full 8 digit parts 
     vector <uint64_t> data(chunk_size) ;
    
-    int i = 0 ; // index for data vector
-    int pointer = numb.size()-9 ; // pointer for chunk string_view
+    int i = 0 ; // size for data vector
+    int pointer = number.size()-9 ; // pointer for chunk string_view
 
     while (pointer>0 ) {
             if (chunk.substr(pointer,9).find('.')== std::string_view::npos){ 
@@ -124,17 +139,17 @@ void str_to_numb (const string &numb , Number & haha) {
             }
 
             // decimal point found 
-            deci_2 = chunk.substr(pointer,9).find('.') +1  ;
-            deci_1 = chunk_size - i ;  
+            digitIndex = chunk.substr(pointer,9).find('.') +1  ;
+            blockIndex = chunk_size - i ;  
          
-            string yelp = string(chunk.substr(pointer-1,deci_2)) + string (chunk.substr(pointer+deci_2,10-deci_2)) ;
+            string yelp = string(chunk.substr(pointer-1,digitIndex)) + string (chunk.substr(pointer+digitIndex,10-digitIndex)) ;
 
             data[i] = str_int(yelp) ;
             pointer-=10 ;
             i++ ;
         }
     
-    if (check) {
+    if (isSignPresent) {
         if (pointer+9>1) {
             
             if (chunk.substr(1,pointer+8).find('.')==string_view::npos){
@@ -143,9 +158,9 @@ void str_to_numb (const string &numb , Number & haha) {
             }
             else {
             // decimal point found
-            deci_2 = chunk.substr(1,pointer+9).find('.')   ;
-            deci_1 = chunk_size - i ;
-            string yelp = string(chunk.substr(1,deci_2)) + string(chunk.substr(2+deci_2,pointer+7-deci_2)) ;
+            digitIndex = chunk.substr(1,pointer+9).find('.')   ;
+            blockIndex = chunk_size - i ;
+            string yelp = string(chunk.substr(1,digitIndex)) + string(chunk.substr(2+digitIndex,pointer+7-digitIndex)) ;
             data.push_back(str_int1(yelp));
             }
         }
@@ -157,15 +172,31 @@ void str_to_numb (const string &numb , Number & haha) {
             }
             else{
             // decimal point found
-            deci_2 = chunk.substr(0,pointer+9).find('.')   ;
-            deci_1 = chunk_size - i ;
-            string yelp = string(chunk.substr(0,deci_2)) + string(chunk.substr(1+deci_2,pointer+8-deci_2)) ;
+            digitIndex = chunk.substr(0,pointer+9).find('.')   ;
+            blockIndex = chunk_size - i ;
+            string yelp = string(chunk.substr(0,digitIndex)) + string(chunk.substr(1+digitIndex,pointer+8-digitIndex)) ;
             data.push_back(str_int1(yelp));
             }
         }
     }
 
    
-    haha = Number(data, sign, deci_1, deci_2);
+    numb = Number(data, isNegative, blockIndex, digitIndex);
 
+}
+
+
+
+int64_t str_int(std::string_view x) {
+    return 100000000LL*(x[0]-'0') + 10000000LL*(x[1]-'0') + 1000000LL*(x[2]-'0') + 100000LL*(x[3]-'0') + 10000LL*(x[4]-'0') + 1000LL*(x[5]-'0') + 100LL*(x[6]-'0') + 10LL*(x[7]-'0') + (x[8]-'0');
+}
+
+int64_t str_int1(string_view x) {
+        int64_t result = x.back() -'0' ;
+        int64_t b=1 ;
+        for (int i=x.size()-2;i>=0;--i){
+            b*=10 ;
+            result+=(x[i]-'0')*b;
+        }
+        return result ;
 }
