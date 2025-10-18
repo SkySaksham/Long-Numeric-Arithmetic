@@ -31,8 +31,8 @@ std::string numb_to_str (const Number & numberObj ) {
     std::string digit = std::to_string(num[size]);
     
     if (blockIndex==0) {
-        if (digitIndex==0&&blockIndex==0) result+="0." ;
-        else digit = insert_decimal(digit,digitIndex) ;
+        //if (digitIndex==0&&blockIndex==0) result+="0." ;
+        digit = insert_decimal(digit,digitIndex) ;
     }
     
     result+=digit;
