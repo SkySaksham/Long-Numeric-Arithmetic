@@ -9,7 +9,7 @@ int main () {
     string data = numb_to_str(fact).substr(0,10) ;
     cout << data << endl ;
 
-    Number a = str_to_numb("-.287567765346478236999999991") ; // bug
+    Number a = str_to_numb("1.111123456789") ; // bug
     cout << numb_to_str(a) << endl ;
     Number b = str_to_numb("+9993847893478932.374884329423999999999") ;
 

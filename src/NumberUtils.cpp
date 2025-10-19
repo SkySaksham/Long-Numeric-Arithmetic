@@ -151,12 +151,21 @@ Number str_to_numb (const std::string &number) {
 
             // decimal point found 
             digitIndex = chunk.substr(pointer,blockSize).find('.') +1  ;
-            blockIndex = chunk_size - i ;  
-         
+            blockIndex = chunk_size - i ; 
+            
+            std::cout << pointer << std::endl ;
             std::string nineDigitChunk = std::string(chunk.substr(pointer-1,digitIndex)) + std::string (chunk.substr(pointer+digitIndex,10-digitIndex)) ;
 
             data[i] = str_int(nineDigitChunk) ;
-            pointer-=10 ;
+            pointer -= 1; // shift left due to decimal point
+
+            if (pointer == 0 && !isSignPresent) blockIndex = chunk_size - i - 1 ; 
+            if (pointer<=1 && isSignPresent) blockIndex = chunk_size -i -1;
+            // adjusting block index if decimal point is in the first block 
+            // Example : 1.23456789 or -1.23456789
+            // without this adjustement , block index will be one chunk to the right
+            
+            pointer-=blockSize ;
             i++ ;
         }
     
