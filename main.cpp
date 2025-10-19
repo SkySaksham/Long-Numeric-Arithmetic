@@ -9,23 +9,18 @@ int main () {
     string data = numb_to_str(fact).substr(0,10) ;
     cout << data << endl ;
 
-    Number a ;
-    Number b ;
+    Number a = str_to_numb("1.111123456789") ; // bug
+    cout << numb_to_str(a) << endl ;
+    Number b = str_to_numb("+9993847893478932.374884329423999999999") ;
 
-    str_to_numb("123451.23499236325652399991",a) ;
-    str_to_numb("67832678263123451.23499236325652399990",b) ;
+    numb_print(a,cout) ;
+    cout << endl ;
+    numb_print(b,cout) ;
+    cout << endl ;
 
+    if (b>a) cout << "b is greater than a" << endl ;
 
-    if (b>a) {
-        cout << "b is greater than a" << endl ;
-    }
+    else cout << "a is greater than b" << endl ;
 
-    cout << operate(a,b,1) << endl ; // compares the absolute value of a & b ;
-    cout << operate(a,b,0) << endl ;   // compares the value of a & b ;
-
-    
-
-
-    
     return 0;
 }
